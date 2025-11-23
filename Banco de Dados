@@ -1,0 +1,40 @@
+-- TABELA DEPARTAMENTOS
+CREATE TABLE DEPARTAMENTOS (
+    DEPT_ID                    INTEGER PRIMARY KEY,
+    DEPT_NOME             VARCHAR(50) NOT NULL,
+    DEPT_LOCALIZACAO     VARCHAR(50)
+);
+-- TABELA FUNCIONARIOS
+CREATE TABLE FUNCIONARIOS (
+    FUNC_ID                             INTEGER PRIMARY KEY,
+    FUNC_NOME                                  VARCHAR(60) NOT NULL,
+    FUNC_CARGO                                VARCHAR(40),
+    FUNC_SALARIO                             DECIMAL(10,2),
+    FUNC_DEPT_ID_FK                       INTEGER,
+    FOREIGN KEY (FUNC_DEPT_ID_FK) REFERENCES DEPARTAMENTOS(DEPT_ID)
+);
+-- TABELA ALOCACOES
+CREATE TABLE ALOCACOES (
+    ALOC_ID                       INTEGER PRIMARY KEY,
+    ALOC_FUNC_ID_FK                 INTEGER NOT NULL,
+    ALOC_PROJETO                      VARCHAR(50) NOT NULL,
+    ALOC_DATA_INICIO                DATE NOT NULL,
+    ALOC_DATA_FIM                     DATE,
+    FOREIGN KEY (ALOC_FUNC_ID_FK) REFERENCES FUNCIONARIOS(FUNC_ID)
+);
+ -- TABELA PROJETOS
+CREATE TABLE PROJETOS (
+    PROJ_ID                     INTEGER PRIMARY KEY,
+    PROJ_NOME                          VARCHAR(50) NOT NULL,
+    PROJ_CLIENTE                      VARCHAR(50),
+    PROJ_DATA_INICIO              DATE NOT NULL
+    PROJ_DATA_FIM              DATE
+);
+-- TABELA TAREFAS
+CREATE TABLE TAREFAS (
+    TARE_ID              INTEGER PRIMARY KEY,
+    TARE_PROJ_ID                   INTEGER,
+    TARE_DESCRICAO             VARCHAR(100) NOT NULL,
+    TARE_PRAZO                      DATE,
+    TARE_STATUS                    VARCHAR(20),
+    FOREIGN KEY (TARE_PROJ_ID) REFERENCES PROJETOS(PROJ_ID)
