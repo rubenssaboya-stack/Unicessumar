@@ -1,0 +1,418 @@
+
+//Questão 1 – Classe e Objeto
+//Crie uma classe Aluno com os atributos nome e matrícula.
+//No método main, crie um objeto Aluno com seus próprios dados e exiba no console:
+//Nome: seu nome
+//Matrícula: número de matrícula fictício
+
+public class Aluno {
+
+    // Atributos da classe Aluno
+    public String nome;
+    public String matricula;
+
+    //Construtor da classe Aluno
+     
+    public Aluno(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
+    // Métodos Getters para acessar os atributos
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    //Método principal (main) para criação e exibição do objeto.
+     
+    public static void main(String[ ] args) {
+      
+       // Dados: Nome: Rubens Cavalcante Saboya, Matrícula: 24432866-5
+        Aluno alunoEspecifico = new Aluno("Rubens Cavalcante Saboya", "24432866-5");
+
+        // Exibição dos dados no console
+        System.out.println("--- Dados do Aluno ---");
+        System.out.println("Nome: " + alunoEspecifico.getNome());
+        System.out.println("Matrícula: " + alunoEspecifico.getMatricula());
+    }
+}
+
+//Questão 2 – Encapsulamento
+//Modifique a classe Aluno para que os atributos sejam privados.
+//Crie getters e setters para acessar e alterar os dados.
+//No main, altere, por exemplo, seu nome usando o setter e exiba novamente usando o getter.
+
+public class Aluno {
+
+    // Os atributos foram modificados para privados
+    private String nome;
+    private String matricula;
+
+    // Construtor da classe Aluno
+    public Aluno(String nome, String matricula) {
+        this.nome = nome;
+        this.matricula = matricula;
+    }
+
+    // Criação dos getters e setters para ler e alterar os dados.
+
+    // Getters Método para leitura 
+    public String getNome() {
+        return nome;
+    }
+
+    public String getMatricula() {
+        return matricula;
+    }
+
+    // Setters Método de alteração
+    public void setNome(String novoNome) {
+        this.nome = novoNome;
+    }
+
+    public void setMatricula(String novaMatricula) {
+        this.matricula = novaMatricula;
+    }
+
+    // Método principal (main) para o encapsulamento.
+ 
+    public static void main(String[ ] args) {
+        System.out.println("--- Encapsulamento ---");
+
+        // Criação do objeto Aluno com os dados iniciais
+        Aluno alunoEspecifico = new Aluno("Rubens Cavalcante Saboya", "24432866-5");
+
+        System.out.println("-- Dados Iniciais (Usando Getters) ---");
+        System.out.println("Nome: " + alunoEspecifico.getNome());
+        System.out.println("Matrícula: " + alunoEspecifico.getMatricula());
+
+        // Alteração do nome usando o setter
+        String novoNome = "Rubens Henrique Saboya Rodrigues";
+        alunoEspecifico.setNome(novoNome);
+
+        // Exiba o novo nome usando o getter
+     System.out.println("--- Dados Após Alteração (Usando Setter e Getter) ---");
+        System.out.println("Nome Antigo alterado para: " + alunoEspecifico.getNome()); 
+        System.out.println("Matrícula:  "  + alunoEspecifico.getMatricula()); // Continua a mesma matrícula
+    }
+}
+
+
+//Questão 3 – Herança
+//Crie uma classe Pessoa com o atributo nome.
+//Faça Aluno herdar de Pessoa e adicione o atributo curso.
+//Crie a classe Professor com o atributo disciplina.
+No main, crie:
+Um objeto Aluno com seus dados
+Um objeto Professor com dados fictícios
+Exiba todos os atributos de ambos.
+
+//Criação da superclasse
+
+class Pessoa {
+    private String nome;
+
+    // Construtor da classe Pessoa
+
+    public Pessoa(String nome) {
+        this.nome = nome;
+    }
+
+    // Getter ler o nome
+
+    public String getNome() {
+        return nome;
+    }
+    
+    // Setter modificar o nome
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+}
+
+//Criação da subclasse Classe Aluno
+
+public class Aluno extends Pessoa {
+
+    private String matricula; 
+    private String curso;
+
+    // Construtor da classe Aluno
+
+    public Aluno(String nome, String matricula, String curso) {
+        
+        super(nome); // Chama o construtor da superclasse Pessoa
+        this.matricula = matricula;
+        this.curso = curso;
+    }
+
+        public String getMatricula() {
+        return matricula;
+    }
+    
+    public String getCurso() {
+        return curso;
+    }
+    
+    public void setMatricula(String matricula) {
+        this.matricula = matricula;
+    }
+    
+    public void setCurso(String curso) {
+        this.curso = curso;
+    }
+}
+
+//Criação da subclasse Professor
+
+public class Professor extends Pessoa {
+    private String disciplina;
+
+    //Construtor da classe Professor
+    public Professor(String nome, String disciplina) {
+        super(nome); // Chama o construtor da superclasse Pessoa
+        this.disciplina = disciplina;
+    }
+
+    // Getter específico para a disciplina
+    public String getDisciplina() {
+        return disciplina;
+    }
+    
+    // Setter específico para a disciplina
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+}
+
+// Criação da classe principal e do método main
+
+public class Escola {
+    
+    public static void main(String[ ] args) {
+        System.out.println("--- Herança ---");
+
+        // Criação de um objeto
+
+        Aluno meuAluno = new Aluno(
+            "Rubens Cavalcante Saboya", 
+            "24432866-5", 
+            "Análise e Desenvolvimento de Sistemas"
+        );
+        
+        //Criação de um objeto Professor com dados fictícios
+        Professor meuProfessor = new Professor(
+            "Prof. James", 
+            "Programação Orientada a Objetos"
+        );
+
+        //  Exibir os atributos das duas subclasses.
+
+        // Exibição dos dados do Aluno
+
+        System.out.println("-- Dados do Aluno –");
+        System.out.println("Nome: " + meuAluno.getNome());             
+        System.out.println("Matrícula: " + meuAluno.getMatricula());   
+        System.out.println("Curso: " + meuAluno.getCurso());           
+        
+        // Exibição dos dados do Professor
+        System.out.println("-- Dados do Professor –");
+        System.out.println("Nome: " + meuProfessor.getNome());         
+        System.out.println("Disciplina: " + meuProfessor.getDisciplina()); 
+        
+      
+    }
+}
+
+//Questão 4 – Polimorfismo
+//Na classe Pessoa, crie o método apresentar().
+//Sobrescreva esse método em Aluno e Professor, retornando apresentações personalizadas.
+//No main, chame apresentar() para seu objeto Aluno e para o objeto Professor, demonstrando polimorfismo.
+
+//Criação classe pai Pessoa
+
+//Classe Pessoa: A classe base com o método apresentar().
+
+abstract public class Pessoa {
+    private String nome;
+    }
+
+    // Método para ser sobrescrito
+    abstract public void apresentar() {
+    public String getNome() {
+    return nome;
+    }
+public void  setNome(String nome) {
+this.nome = nome;
+  }
+}
+
+//Classe Aluno
+
+public class Aluno extends Pessoa {
+    private String matricula;
+    private String curso;
+
+    public Aluno(String nome, String matricula, String curso) {
+        super.setNome(nome); // Chama o construtor da classe pai
+        this.matricula = matricula;
+        this.curso = curso;
+    }
+
+    //Sobrescrita do método apresentar() para a classe Aluno
+
+    @Override
+    public void apresentar() {
+        return "Sou o Aluno " + super.getNome() + ", matrícula " + this.matricula + ", e estou cursando " + this.curso + ".";
+    }
+
+    // Getters
+    public String getMatricula() { return matricula; }
+    public String getCurso() { return curso; }
+}
+
+//Classe Professor.
+
+public class Professor extends Pessoa {
+    private String disciplina;
+
+    public Professor(String nome, String disciplina) {
+        super.set(nome); // Chama o construtor da classe pai
+        this.disciplina = disciplina;
+    }
+
+    //Sobrescrita do método apresentar()
+    
+    @Override
+    public String apresentar() {
+        return "Sou o Professor " + super.getNome() + " e ministro a disciplina de " + this.disciplina + ".";
+    }
+
+    // Getter
+    public String getDisciplina() { return disciplina; }
+}
+
+//
+
+public class SistemaEscolar {
+
+    public static void main(String[] args) {
+        System.out.println("---Polimorfismo ---");
+
+        // 1. Criação dos objetos
+        Aluno meuAluno = new Aluno(
+            "Rubens Cavalcante Saboya", 
+            "24432866-5", 
+            "Análise e Desenvolvimento de Sistemas"
+        );
+        
+        Professor meuProfessor = new Professor(
+            "Prof. James", 
+            "Programação Orientada a Objetos"
+        );
+Questão 5 – Interface
+Crie uma interface Avaliado com o método avaliarDesempenho().
+Faça a classe Aluno implementar a interface, retornando uma mensagem personalizada, por exemplo: "Aluno [seu nome] obteve ótimo desempenho!"
+No main, invoque esse método para o seu objeto Aluno.
+
+// Interface Avaliado
+
+
+// Classe Pessoa
+ 
+abstract public class Pessoa {
+    private String nome;
+    }
+
+    // Método para ser sobrescrito
+    abstract public void apresentar() {
+    public String getNome() {
+    return nome;
+    }
+public void  setNome(String nome) {
+this.nome = nome;
+  }
+}
+
+// Classe Aluno: implementando a interface Avaliado.
+ 
+public class Aluno extends Pessoa implements Avaliado {
+    private String matricula;
+    private String curso;
+
+    public Aluno(String nome, String matricula, String curso) {
+        set.super(nome);
+        this.matricula = matricula;
+        this.curso = curso;
+    }
+
+    @Override
+    public String apresentar() {
+        return "Sou o Aluno " + super.getNome() + ", matrícula " + this.matricula + ", e estou cursando " + this.curso + ".";
+    }
+
+    @Override
+    public String avaliarDesempenho() {
+        return "Aluno " + super.getNome() + " obteve ótimo desempenho!";
+    }
+
+    public String getMatricula() { return matricula; }
+    public String getCurso() { return curso; }
+}
+
+// Classe Professor
+
+public class Professor extends Pessoa {
+    private String disciplina;
+
+    public Professor(String nome, String disciplina) {
+        set.super(nome);
+        this.disciplina = disciplina;
+    }
+
+    @Override
+    public String apresentar() {
+        return "Sou o Professor " + this.getNome() + " e ministro a disciplina de " + this.disciplina + ".";
+    }
+
+    public String getDisciplina() { return disciplina; }
+}
+
+public class SistemaEscolar {
+
+    public static void main(String[] args) {
+        System.out.println("---Interface ---");
+
+        // Criação do objeto Aluno (Rubens)
+        Aluno meuAluno = new Aluno(
+            "Rubens Cavalcante Saboya", 
+            "24432866-5", 
+            "Análise e Desenvolvimento de Sistemas"
+        );
+        
+        // 2. Criação do objeto Professor (Prof. James)
+        Professor meuProfessor = new Professor(
+            "Prof. James", 
+            "Programação Orientada a Objetos"
+        );
+        
+        System.out.println(“-----Dados do Aluno—");
+        System.out.println(meuAluno.apresentar());
+
+    
+        System.out.println("\n*** Avaliação (Chamada da Interface) ***");
+        System.out.println(meuAluno.avaliarDesempenho()); //Chama o método da Interface
+
+    }
+}
+
+
+
+
+
